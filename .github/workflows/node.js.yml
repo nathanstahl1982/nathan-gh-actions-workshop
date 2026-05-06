@@ -29,6 +29,9 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - uses: davelosert/vitest-coverage-report-action@v2
+    - name: 'Report Coverage'
+      uses: davelosert/vitest-coverage-report-action@v2
+      if: always()
       with:
         vite-config-path: vite.config.ts
+        
