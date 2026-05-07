@@ -5,6 +5,10 @@ on: [push]
 env:
   GLOBAL_ENV: "global"
 
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+  
 jobs:
   test:
     runs-on: ${{ matrix.os }}
@@ -64,3 +68,4 @@ jobs:
         with:
           name: test-log-${{ matrix.os }}-${{ matrix.node }}
       - run: echo "Deploying to production"
+
