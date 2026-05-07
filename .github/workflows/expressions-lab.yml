@@ -1,6 +1,6 @@
 name: Advanced Workflow Lab
 
-on: [push]
+on: workflow_dispatch: #[push]
 
 env:
   GLOBAL_ENV: "global"
