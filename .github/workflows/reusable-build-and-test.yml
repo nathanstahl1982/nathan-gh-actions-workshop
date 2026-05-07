@@ -36,30 +36,3 @@ jobs:
         run: echo "test_result=success" >> $GITHUB_OUTPUT
     outputs:
       test_result: ${{ steps.result.outputs.test_result }}
-This is just doing a simple build and test. Now call this reusable workflow from another workflow in the same repo.
-
-Create a new workflow .github/workflows/call-reusable-ci.yml:
-
-name: Call CI Reusable Workflow
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-
-jobs:
-  do-build-test:
-    uses: ./.github/workflows/reusable-build-and-test.yml
-    with:
-      node_version: '24'
-      run_tests: true
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  post-check:
-    needs: do-build-test
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Test result was ${{ needs.do-build-test.outputs.test_result }}"
