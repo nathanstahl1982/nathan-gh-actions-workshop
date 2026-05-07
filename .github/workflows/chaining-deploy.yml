@@ -1,7 +1,7 @@
 name: Chaining - Deploy
 on:
   workflow_run:
-    workflows: ["Build and Test"]
+    workflows: ["Chaining - Build and Test"]
     types:
       - completed
 jobs:
