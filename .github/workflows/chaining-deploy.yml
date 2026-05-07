@@ -1,9 +1,10 @@
 name: Chaining - Deploy
 on:
-  workflow_run:
-    workflows: ["Chaining - Build and Test"]
-    types:
-      - completed
+  workflow_dispatch: 
+  #workflow_run:
+  #  workflows: ["Chaining - Build and Test"]
+  #  types:
+  #    - completed
 jobs:
   deploy:
     runs-on: ubuntu-latest
